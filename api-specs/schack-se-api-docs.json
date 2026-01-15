@@ -1,0 +1,2209 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "https://member.schack.se/",
+      "description": "Default Server URL"
+    }
+  ],
+  "paths": {
+    "/public/api/v1/tournamentteamregistration/tournament/{id}/club/{clubid}": {
+      "get": {
+        "tags": [
+          "tournament-team-registration-controller"
+        ],
+        "summary": "Hämta spelarregistreringar för en turnering och klubb",
+        "operationId": "getRegisteredPlayers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för turneringen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "clubid",
+            "in": "path",
+            "description": "id för klubben",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamRegistrationDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/team/table/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta turneringstabell (klubblagturnering) för en grupp i en turnering",
+        "operationId": "getTeamResultTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för gruppen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamTournamentEndResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/team/roundresults/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta rondresultaten (klubblagturnering) för en grupp i en turnering",
+        "operationId": "getTeamRoundResults",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för gruppen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentRoundResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/team/roundresults/id/{id}/memberid/{memberid}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta rondresultaten för en spelare i en turnering",
+        "operationId": "getTeamRoundResults_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för gruppen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "memberid",
+            "in": "path",
+            "description": "id för medlemmen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentRoundResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/table/memberid/{id}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta individuella turneringsresultat/anmälningar för en medlem",
+        "operationId": "getMemberTableResults",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för medlemmen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentEndResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/table/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta turneringstabell (endast individuell än så länge) för en grupp i en turnering",
+        "operationId": "getResultTable",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för gruppen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentEndResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/roundresults/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta rondresultaten (endast individuell än så länge) för en grupp i en turnering",
+        "operationId": "getRoundResults",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för gruppen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentRoundResultDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournamentresults/game/memberid/{id}": {
+      "get": {
+        "tags": [
+          "tournament-results-public-controller"
+        ],
+        "summary": "Hämta partier för en medlem",
+        "operationId": "getMemberTeamResults",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för medlemmen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/tournament/updated/{startdate}/{enddate}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp turneringar med resultat som uppdaterats mellan datum",
+        "operationId": "searchUpdatedTournament",
+        "parameters": [
+          {
+            "name": "startdate",
+            "in": "path",
+            "description": "from datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "path",
+            "description": "tom datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "filtrerar distrikts och klubbturneringar per distrikt. Optional",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/tournament/updated/{startdate}/{enddate}/{districtid}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp turneringar med resultat som uppdaterats mellan datum",
+        "operationId": "searchUpdatedTournament_1",
+        "parameters": [
+          {
+            "name": "startdate",
+            "in": "path",
+            "description": "from datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "path",
+            "description": "tom datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "filtrerar distrikts och klubbturneringar per distrikt. Optional",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/tournament/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Hämta turneringsinfo givet en turnering",
+        "operationId": "getTournament",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för turneringen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TournamentDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/group/updated/{startdate}/{enddate}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp grupper med resultat som uppdaterats mellan datum",
+        "operationId": "searchUpdatedTournamentClassGroup",
+        "parameters": [
+          {
+            "name": "startdate",
+            "in": "path",
+            "description": "from datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "path",
+            "description": "tom datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "filtrerar distrikts och klubbturneringar per distrikt. Optional",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentSearchAnswerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/group/updated/{startdate}/{enddate}/{districtid}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp grupper med resultat som uppdaterats mellan datum",
+        "operationId": "searchUpdatedTournamentClassGroup_1",
+        "parameters": [
+          {
+            "name": "startdate",
+            "in": "path",
+            "description": "from datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "enddate",
+            "in": "path",
+            "description": "tom datum",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "filtrerar distrikts och klubbturneringar per distrikt. Optional",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentSearchAnswerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/group/search/{searchWord}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp grupper i turneringar givet namn/ort",
+        "operationId": "searchTournament",
+        "parameters": [
+          {
+            "name": "searchWord",
+            "in": "path",
+            "description": "sökord för namn på grupp/turnering eller ort",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentSearchAnswerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/group/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Hämta turneringsinfo givet en grupp i en turnering",
+        "operationId": "getTournamentFromGroup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för gruppen",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TournamentDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/group/coming": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp kommande turneringar",
+        "operationId": "searchComingTournaments",
+        "parameters": [
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "filtrerar distrikts och klubbturneringar per distrikt. Optional",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/group/coming/{districtid}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Sök upp kommande turneringar",
+        "operationId": "searchComingTournaments_1",
+        "parameters": [
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "filtrerar distrikts och klubbturneringar per distrikt. Optional",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TournamentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/tournament/class/id/{id}": {
+      "get": {
+        "tags": [
+          "tournament-structure-controller"
+        ],
+        "summary": "Hämta turneringsinfo givet en klass/division i en turnering",
+        "operationId": "getTournamentFromClass",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för klass/division",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TournamentDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/ratinglist/federation/date/{ratingdate}/ratingtype/{ratingtype}/category/{category}": {
+      "get": {
+        "tags": [
+          "rating-list-public-controller"
+        ],
+        "summary": "Hämta rankinglista för hela SSF, givet datum, rankingkategori och medlemskategori",
+        "operationId": "getFederation",
+        "parameters": [
+          {
+            "name": "ratingdate",
+            "in": "path",
+            "description": "datum för rankinglistan YYYY-MM-DD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ratingtype",
+            "in": "path",
+            "description": "rankingtyp, Långparti=1,Snabb=6,Blixt=7",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Medlemskategori: Alla=0, Damer=5, Juniorer=1, Kadetter=2, Miniorer=6, Knattar=7, Veteraner=4",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/ratinglist/district/{id}/date/{ratingdate}/ratingtype/{ratingtype}/category/{category}": {
+      "get": {
+        "tags": [
+          "rating-list-public-controller"
+        ],
+        "summary": "Hämta rankinglista för ett distrikt, givet datum, rankingkategori och medlemskategori",
+        "operationId": "getDistrictRatingList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för distriktet",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "ratingdate",
+            "in": "path",
+            "description": "datum för rankinglistan YYYY-MM-DD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ratingtype",
+            "in": "path",
+            "description": "rankingtyp, Långparti=1,Snabb=6,Blixt=7",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Medlemskategori: Alla=0, Damer=5, Juniorer=1, Kadetter=2, Miniorer=6, Knattar=7, Veteraner=4",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/ratinglist/club/{id}/date/{ratingdate}/ratingtype/{ratingtype}/category/{category}": {
+      "get": {
+        "tags": [
+          "rating-list-public-controller"
+        ],
+        "summary": "Hämta rankinglista för en klubb, givet datum, rankingkategori och medlemskategori",
+        "operationId": "getClubRatingList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för klubben",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "ratingdate",
+            "in": "path",
+            "description": "datum för rankinglistan YYYY-MM-DD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ratingtype",
+            "in": "path",
+            "description": "rankingtyp, Långparti=1,Snabb=6,Blixt=7",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Medlemskategori: Alla=0, Damer=5, Juniorer=1, Kadetter=2, Miniorer=6, Knattar=7, Veteraner=4",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/player/{id}/date/{date}": {
+      "get": {
+        "tags": [
+          "player-public-controller"
+        ],
+        "summary": "Hämta spelarinfo",
+        "operationId": "getPlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för spelare",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "datum för spelarinfo (klubbtillhörighet, ranking, etc) YYYY-MM-DD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerInfoDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/player/fornamn/{fornamn}/efternamn/{efternamn}": {
+      "get": {
+        "tags": [
+          "player-public-controller"
+        ],
+        "summary": "Sök spelare",
+        "operationId": "searchPlayer",
+        "parameters": [
+          {
+            "name": "fornamn",
+            "in": "path",
+            "description": "fornamn",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "efternamn",
+            "in": "path",
+            "description": "efternamn",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/player/fideid/{id}/date/{date}": {
+      "get": {
+        "tags": [
+          "player-public-controller"
+        ],
+        "summary": "Hämta spelarinfo givet FIDE-id",
+        "operationId": "getPlayerByFIDEId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "FIDE-id för spelare",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "datum för spelarinfo (klubbtillhörighet, ranking, etc) YYYY-MM-DD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerInfoDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/organisation/federation": {
+      "get": {
+        "tags": [
+          "organisation-public-controller"
+        ],
+        "summary": "Hämta SSF info",
+        "operationId": "getFederation_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FederationDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/organisation/districts": {
+      "get": {
+        "tags": [
+          "organisation-public-controller"
+        ],
+        "summary": "Hämta alla distrikt info",
+        "operationId": "getDistricts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DistrictDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/organisation/district/clubs/{districtid}": {
+      "get": {
+        "tags": [
+          "organisation-public-controller"
+        ],
+        "summary": "Hämta klubbar i distrikt",
+        "operationId": "getClubsInDistrict",
+        "parameters": [
+          {
+            "name": "districtid",
+            "in": "path",
+            "description": "id för distriktet",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClubDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/organisation/club/{clubid}": {
+      "get": {
+        "tags": [
+          "organisation-public-controller"
+        ],
+        "summary": "Hämta klubb",
+        "operationId": "getClub",
+        "parameters": [
+          {
+            "name": "clubid",
+            "in": "path",
+            "description": "id för klubben",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClubDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/v1/organisation/club/exists/{name}/{id}": {
+      "get": {
+        "tags": [
+          "organisation-public-controller"
+        ],
+        "summary": "Kontrollera om klubbnamn finns, annat än för klubb-id't som skickas in",
+        "operationId": "clubNameExists",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "namn för klubben",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id för klubben som det frågas för",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MemberFIDERatingDTO": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "k": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rapidRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rapidk": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "blitzRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "blitzK": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "MemberLASKRatingDTO": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PlayerInfoDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthdate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fideid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "country": {
+            "type": "string"
+          },
+          "club": {
+            "type": "string"
+          },
+          "clubId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "elo": {
+            "$ref": "#/components/schemas/MemberFIDERatingDTO"
+          },
+          "lask": {
+            "$ref": "#/components/schemas/MemberLASKRatingDTO"
+          }
+        }
+      },
+      "TeamRegistrationDto": {
+        "type": "object",
+        "properties": {
+          "tournamentid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clubid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "players": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeamRegistrationPlayerDto"
+            }
+          }
+        }
+      },
+      "TeamRegistrationPlayerDto": {
+        "type": "object",
+        "properties": {
+          "registered": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "swedishCitizen": {
+            "type": "boolean"
+          },
+          "playerInfoDto": {
+            "$ref": "#/components/schemas/PlayerInfoDto"
+          }
+        }
+      },
+      "ClubDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "city": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startSeason": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endSeason": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "phonenr": {
+            "type": "string"
+          },
+          "postgiro": {
+            "type": "string"
+          },
+          "alliansclub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string"
+          },
+          "orgnumber": {
+            "type": "string"
+          },
+          "districts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DistrictMembershipDTO"
+            }
+          },
+          "regYear": {
+            "$ref": "#/components/schemas/RegistrationYear"
+          },
+          "url": {
+            "type": "string"
+          },
+          "vbdescr": {
+            "type": "string"
+          },
+          "schoolClub": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "schoolName": {
+            "type": "string"
+          },
+          "schoolid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lan": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "noEconomy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "specialType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yes2chessreason": {
+            "type": "boolean"
+          },
+          "schack4anreason": {
+            "type": "boolean"
+          },
+          "ovrigtreason": {
+            "type": "boolean"
+          },
+          "hasRatingPlayers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sisuid": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DistrictMembershipDTO": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "districtid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clubid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "benefit": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RegistrationYear": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TeamTournamentEndResultDto": {
+        "type": "object",
+        "properties": {
+          "points": {
+            "type": "number",
+            "format": "float"
+          },
+          "secPoints": {
+            "type": "number",
+            "format": "double"
+          },
+          "place": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contenderId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wonGames": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "drawGames": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lostGames": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "club": {
+            "$ref": "#/components/schemas/ClubDTO"
+          }
+        }
+      },
+      "GameDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tournamentResultID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tableNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "whiteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "blackId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "result": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pgn": {
+            "type": "string"
+          },
+          "groupiD": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "TournamentRoundResultDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "groupdId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roundNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "board": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "homeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "homeTeamNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "awayId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "awayTeamNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "homeResult": {
+            "type": "number",
+            "format": "float"
+          },
+          "awayResult": {
+            "type": "number",
+            "format": "float"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finalized": {
+            "type": "boolean"
+          },
+          "publisher": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "publishDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedNote": {
+            "type": "string"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameDto"
+            }
+          }
+        }
+      },
+      "TournamentEndResultDto": {
+        "type": "object",
+        "properties": {
+          "points": {
+            "type": "number",
+            "format": "float"
+          },
+          "secPoints": {
+            "type": "number",
+            "format": "double"
+          },
+          "place": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contenderId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wonGames": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "drawGames": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lostGames": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "groupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "playerInfo": {
+            "$ref": "#/components/schemas/PlayerInfoDto"
+          }
+        }
+      },
+      "LocalTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "second": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nano": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PrizeCategoryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "start": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "end": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "groupid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usagetype": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "andlogic": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RoundDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "groupId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roundNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roundDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rated": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "judgeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lockTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "matchId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "TournamentClassDto": {
+        "type": "object",
+        "properties": {
+          "classID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tournamentID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentClassID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "className": {
+            "type": "string"
+          },
+          "numberOfTeamsToGoUpClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfTeamsToGoDownClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentageOfPointsToGoUpClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentageOfPointsToGoDownClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gamesUrl": {
+            "type": "string"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TournamentClassGroupDto"
+            }
+          }
+        }
+      },
+      "TournamentClassGroupDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "classID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "pairingSystemMember": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "numberOfTeamsToGoUpClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfTeamsToGoDownClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentageOfPointsToGoUpClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentageOfPointsToGoDownClass": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "playersinteam": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "doubleRounded": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cost": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "possibleToRegister": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tiebreakSystem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pointSystem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "printName": {
+            "type": "string"
+          },
+          "rankingAlgorithm": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "splitgroupSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrofrounds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "arenaStart": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "arenaEnd": {
+            "$ref": "#/components/schemas/LocalTime"
+          },
+          "registrationCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrizeCategoryDto"
+            }
+          },
+          "prizeCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrizeCategoryDto"
+            }
+          },
+          "tournamentRounds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoundDto"
+            }
+          }
+        }
+      },
+      "TournamentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "city": {
+            "type": "string"
+          },
+          "arena": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "secjudges": {
+            "type": "string"
+          },
+          "thinkingTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allowForeignPlayers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamtournamentPlayerListType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ageFilter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfPartLink": {
+            "type": "string"
+          },
+          "orgType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orgNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ratingRegDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ratingRegDate2": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fideregged": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "online": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y2cRules": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamNrOfDaysRegged": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "showPublic": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "invitationurl": {
+            "type": "string"
+          },
+          "latestUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "secParsedJudges": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "rootClasses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TournamentClassDto"
+            }
+          }
+        }
+      },
+      "TournamentSearchAnswerDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tournamentid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tournamentname": {
+            "type": "string"
+          },
+          "latestUpdatedGame": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FederationDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "city": {
+            "type": "string"
+          },
+          "started": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startseason": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endseason": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "phonenr": {
+            "type": "string"
+          },
+          "postgiro": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "orgnumber": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "sisuid": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DistrictDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "co_ContantPerson": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "city": {
+            "type": "string"
+          },
+          "started": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startSeason": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endSeason": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "phonenr": {
+            "type": "string"
+          },
+          "postgiro": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string"
+          },
+          "orgnumber": {
+            "type": "string"
+          },
+          "authschoolclub": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "sisuid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "joinFederationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

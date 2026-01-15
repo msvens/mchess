@@ -1,0 +1,29 @@
+# mchess configuration
+# Copy to config.yaml and adjust values
+
+server:
+  port: 8080
+  # host: localhost      # default: localhost
+  # prefix: /api         # default: /api
+
+db:
+  host: localhost
+  port: 5432
+  user: mchess
+  password: mchess
+  name: mchess
+
+upstream:
+  # Production API
+  baseUrl: https://member.schack.se/public/api/v1
+  # Development/test API (Halvarsson)
+  # baseUrl: https://halvarsson.no-ip.com/webapp/memdb/public/api/v1
+
+cache:
+  # TTL for "current" data (current month or no date specified)
+  # Historical data (past months) never expires - it's immutable
+  ttl: 24h
+
+log:
+  level: info    # debug, info, warn, error
+  # format: text  # text (dev, default) or json (prod)

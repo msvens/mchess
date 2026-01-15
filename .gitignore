@@ -1,0 +1,41 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+mchess
+
+# Test binary
+*.test
+
+# Output of go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+
+# Config with secrets (keep example)
+config.yaml
+!config.example.yaml
+
+# Generated files
+docs/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
