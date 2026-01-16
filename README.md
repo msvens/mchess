@@ -81,7 +81,7 @@ go build -o mchess .
    ./mchess serve
    ```
 
-5. Visit `http://localhost:8080/swagger/` for interactive API documentation.
+5. Visit `http://localhost:8080/api/swagger/` for interactive API documentation.
 
 ## CLI Commands
 
@@ -138,7 +138,7 @@ log:
 
 ### Swagger UI
 
-Interactive API documentation is available at `/swagger/` when the server is running.
+Interactive API documentation is available at `{prefix}/swagger/` (default: `/api/swagger/`) when the server is running.
 
 ### Health Endpoints
 
@@ -260,6 +260,36 @@ swag init
 ```bash
 go test ./...
 ```
+
+### Test Database Setup
+
+The handler tests run against the real schack.se API (no mocks) and use a separate PostgreSQL database for caching tests.
+
+1. Create the test database:
+   ```bash
+   # Create user and database
+   psql -c "CREATE USER mchess WITH PASSWORD 'mchess';"
+   psql -c "CREATE DATABASE mchess_test OWNER mchess;"
+   ```
+
+2. Or use a custom connection string:
+   ```bash
+   export MCHESS_TEST_DB="postgres://user:pass@localhost:5432/mchess_test?sslmode=disable"
+   ```
+
+3. Run tests:
+   ```bash
+   # All tests
+   go test ./...
+
+   # Handler tests only (includes API integration tests)
+   go test ./internal/api/handlers/... -v
+
+   # Skip database-dependent tests (caching tests)
+   go test ./internal/api/handlers/... -v -run 'Test[^C]|TestC[^a]'
+   ```
+
+**Note:** Tests that call the real schack.se API may be slow due to rate limiting and network latency. The test database is cleared before each caching test run.
 
 ## API Compatibility
 

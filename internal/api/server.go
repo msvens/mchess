@@ -13,7 +13,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	httpSwagger "github.com/swaggo/http-swagger"
 
-	_ "github.com/msvens/mchess/docs" // swagger docs
+	"github.com/msvens/mchess/docs"
 
 	"github.com/msvens/mchess/internal/api/handlers"
 	"github.com/msvens/mchess/internal/config"
@@ -115,13 +115,15 @@ func (s *Server) setupRoutes() {
 	s.router.Get("/health", s.handleHealth)
 	s.router.Get("/ready", s.handleReady)
 
-	// Swagger UI - accessible at /swagger/*
-	s.router.Get("/swagger/*", httpSwagger.Handler(
-		httpSwagger.URL("/swagger/doc.json"),
-	))
+	// Override Swagger BasePath at runtime to match configured prefix
+	docs.SwaggerInfo.BasePath = s.cfg.Server.Prefix
 
 	// API routes - schack.se compatible (under configured prefix, e.g., /api)
 	s.router.Route(s.cfg.Server.Prefix, func(r chi.Router) {
+		// Swagger UI - accessible at {prefix}/swagger/*
+		r.Get("/swagger/*", httpSwagger.Handler(
+			httpSwagger.URL(s.cfg.Server.Prefix+"/swagger/doc.json"),
+		))
 		// === schack.se compatible routes ===
 		// These match the upstream API exactly for drop-in replacement
 
